@@ -10,14 +10,38 @@
 
 <body>
     <header>
-        navegacion
         <nav>
-            options
+            <ul>
+                <li>
+                    <a href="">Home</a>
+                </li>
+                <li>
+                    <a href="">About</a>
+                </li>
+                <li>
+                    <a href="">Archive</a>
+                </li>
+                <li>
+                    <a href="/cascada.html">cascada</a>
+                </li>
+                <li>
+                    <a href="">Characters</a>
+                </li>
+            </ul>
         </nav>
     </header>
     <main>
+        <div>
+            <button id="prev-button" >Prev</button>
+            <select name="capitulo" id="chapter-select">
+                <option value="1">Chapter 1</option>
+                <option value="2">Chapter 2</option>
+                <option value="3">Chapter 3</option>
+            </select>
+            <button id="next-button">Next</button>
+        </div>
         <div class="img-container">
-            dinamic
+            <img src="/images/ElRegresoDelAspirante/1.jpg" alt="image main">
         </div>
     </main>
     <footer>
@@ -28,3 +52,32 @@
     </footer>
 </body>
 </html>
+
+<script>
+    const chapterSelect = document.getElementById("chapter-select");
+    const imgContainer = document.querySelector(".img-container img");
+
+    chapterSelect.addEventListener("change", (event) => {
+        const selectedChapter = event.target.value;
+        imgContainer.src = `/images/ElRegresoDelAspirante/${selectedChapter}.jpg`;
+    });
+
+    const prevButton = document.getElementById("prev-button");
+    const nextButton = document.getElementById("next-button");
+
+    prevButton.addEventListener("click", () => {
+        const currentChapter = parseInt(chapterSelect.value);
+        if (currentChapter > 1) {
+            chapterSelect.value = currentChapter - 1;
+            imgContainer.src = `/images/ElRegresoDelAspirante/${currentChapter - 1}.jpg`;
+        }
+    });
+
+    nextButton.addEventListener("click", () => {
+        const currentChapter = parseInt(chapterSelect.value);
+        if (currentChapter < 3) {
+            chapterSelect.value = currentChapter + 1;
+            imgContainer.src = `/images/ElRegresoDelAspirante/${currentChapter + 1}.jpg`;
+        }
+    });
+</script>
