@@ -1,0 +1,11 @@
+{
+    "title": "hajime no ippo",
+    "asset-src": "hajime-no-ippo",
+    "chapters": [
+        {
+            "title": "regreso del aspirante",
+            "chapter-src": "el-regreso-del-aspirante",
+            "pages": 19
+        }
+    ]
+}

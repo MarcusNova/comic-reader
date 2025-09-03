@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Comic Reader</title>
-    <style rel="stylesheet" src="./styles.css"></style>
+    <link rel="stylesheet" href="./shared/utils/normalizer.css"></link>
+    <link rel="stylesheet" href="./styles.css"></link>
 </head>
 
 <body>
@@ -30,20 +31,20 @@
             </ul>
         </nav>
     </header>
-    <main>
+    <main class="main-content">
         <div class="img-container">
             <img
-                src="/images/ElRegresoDelAspirante/1.jpg"
+                src="assets/images/mangas/hajime-no-ippo/ElRegresoDelAspirante/1.jpg"
                 alt="image main"
                 loading="lazy"
             >
             <img 
-                src="/images/ElRegresoDelAspirante/2.jpg" 
+                src="assets/images/mangas/hajime-no-ippo/ElRegresoDelAspirante/2.jpg" 
                 alt="image main" 
                 loading="lazy"
             >
             <img
-                src="/images/ElRegresoDelAspirante/3.jpg"
+                src="assets/images/mangas/hajime-no-ippo/ElRegresoDelAspirante//3.jpg"
                 alt="image main"
                 loading="lazy"
             >
@@ -53,7 +54,10 @@
         <section class="comments-container">
         
         </section>
-        Creado por team Shiba
+        <section class="brand-container">
+            <img src="assets/images/brand/cute-shiba-inu-dog-cartoon-element-png.webp" alt="logo team shiba" loading="lazy">
+            <h3>Creado por team Shiba</h3>
+        </section>
     </footer>
 </body>
 </html>
@@ -64,6 +68,6 @@
 
     chapterSelect.addEventListener("change", (event) => {
         const selectedChapter = event.target.value;
-        imgContainer.src = `/images/ElRegresoDelAspirante/0${selectedChapter}.jpg`;
+        imgContainer.src = `assets/images/mangas/hajime-no-ippo/ElRegresoDelAspirante/0${selectedChapter}.jpg`;
     });
 </script>

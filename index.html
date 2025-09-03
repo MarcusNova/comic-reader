@@ -5,7 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Comic Reader</title>
-    <style rel="stylesheet" src="./styles.css"></style>
+    <link rel="stylesheet" href="./shared/utils/normalizer.css">
+    </link>
+    <link rel="stylesheet" href="./styles.css">
+    </link>
 </head>
 
 <body>
@@ -22,7 +25,7 @@
                     <a href="">Archive</a>
                 </li>
                 <li>
-                    <a href="/cascada.html">cascada</a>
+                    <a href="/cascada.html">Cascada</a>
                 </li>
                 <li>
                     <a href="">Characters</a>
@@ -30,54 +33,84 @@
             </ul>
         </nav>
     </header>
-    <main>
+    <main class="main-content">
         <div>
-            <button id="prev-button" >Prev</button>
-            <select name="capitulo" id="chapter-select">
-                <option value="1">Chapter 1</option>
-                <option value="2">Chapter 2</option>
-                <option value="3">Chapter 3</option>
+            <button id="prev-button">Prev</button>
+            <select name="pagina" id="page-select">
             </select>
             <button id="next-button">Next</button>
         </div>
         <div class="img-container">
-            <img src="/images/ElRegresoDelAspirante/1.jpg" alt="image main">
+            <img src="assets/images/mangas/hajime-no-ippo/el-regreso-del-aspirante/1.jpg" alt="image main">
         </div>
     </main>
     <footer>
         <section class="comments-container">
-        
+
         </section>
-        Creado por team Shiba
+        <section class="brand-container">
+            <img src="assets/images/brand/cute-shiba-inu-dog-cartoon-element-png.webp" alt="logo team shiba"
+                loading="lazy">
+            <h3>Creado por team Shiba</h3>
+        </section>
     </footer>
 </body>
+
 </html>
 
 <script>
-    const chapterSelect = document.getElementById("chapter-select");
+    const pageSelect = document.getElementById("page-select");
     const imgContainer = document.querySelector(".img-container img");
 
-    chapterSelect.addEventListener("change", (event) => {
-        const selectedChapter = event.target.value;
-        imgContainer.src = `/images/ElRegresoDelAspirante/${selectedChapter}.jpg`;
+    let mangaChapterInfo = null;
+    /**
+     * Simulando Peticion al JSON con información del cap
+     * */
+    const rutaJson = './shared/jsons/mangas/hajime-no-ippo.json';
+    fetch(rutaJson)
+        .then(response => {
+            return response.json();
+        })
+        .then(data => {
+            mangaChapterInfo = data;
+            for (let index = 1; index < mangaChapterInfo.chapters[0].pages + 1; index++) {
+                const option = document.createElement("option");
+                option.value = index;
+                option.textContent = `Capitulo ${index}`;
+                pageSelect.appendChild(option);
+            }
+        })
+        .catch(error => {
+            console.error(error);
+        })
+
+    /**
+   * Manejo de paginas del capitulo
+   * */
+
+    pageSelect.addEventListener("change", (event) => {
+        const selectedPage = event.target.value;
+        imgContainer.src = `assets/images/mangas/hajime-no-ippo/el-regreso-del-aspirante/${selectedPage}.jpg`;
     });
 
     const prevButton = document.getElementById("prev-button");
     const nextButton = document.getElementById("next-button");
+    let currentPage = parseInt(pageSelect.value) ?? 1;
 
     prevButton.addEventListener("click", () => {
-        const currentChapter = parseInt(chapterSelect.value);
-        if (currentChapter > 1) {
-            chapterSelect.value = currentChapter - 1;
-            imgContainer.src = `/images/ElRegresoDelAspirante/${currentChapter - 1}.jpg`;
+        currentPage = parseInt(pageSelect.value) ?? 1;
+        if (currentPage > 1) {
+            currentPage = currentPage - 1;
+            pageSelect.value = currentPage;
+            imgContainer.src = `assets/images/mangas/hajime-no-ippo/el-regreso-del-aspirante/${currentPage}.jpg`;
         }
     });
 
     nextButton.addEventListener("click", () => {
-        const currentChapter = parseInt(chapterSelect.value);
-        if (currentChapter < 3) {
-            chapterSelect.value = currentChapter + 1;
-            imgContainer.src = `/images/ElRegresoDelAspirante/${currentChapter + 1}.jpg`;
-        }
+        currentPage = parseInt(pageSelect.value) ?? 1;
+        currentPage = currentPage + 1;
+        pageSelect.value = currentPage;
+        console.log(pageSelect.value)
+        imgContainer.src = `assets/images/mangas/hajime-no-ippo/el-regreso-del-aspirante/${currentPage}.jpg`;
     });
 </script>
