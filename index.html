@@ -16,7 +16,7 @@
         <nav>
             <ul>
                 <li>
-                    <a href="">Home</a>
+                    <a href="/Biblioteca.html">Home</a>
                 </li>
                 <li>
                     <a href="">About</a>
@@ -40,8 +40,14 @@
             </select>
             <button id="next-button">Next</button>
         </div>
-        <div class="img-container">
+        <a class="img-container" id="pic-container">
             <img src="assets/images/mangas/hajime-no-ippo/el-regreso-del-aspirante/1.jpg" alt="image main">
+        </a>
+        <div>
+            <button id="prev-button">Prev</button>
+            <select name="pagina" id="page-select">
+            </select>
+            <button id="next-button">Next</button>
         </div>
     </main>
     <footer>
@@ -95,6 +101,9 @@
 
     const prevButton = document.getElementById("prev-button");
     const nextButton = document.getElementById("next-button");
+
+    const picContainer = document.getElementById("pic-container");
+
     let currentPage = parseInt(pageSelect.value) ?? 1;
 
     prevButton.addEventListener("click", () => {
@@ -105,6 +114,16 @@
             imgContainer.src = `assets/images/mangas/hajime-no-ippo/el-regreso-del-aspirante/${currentPage}.jpg`;
         }
     });
+
+    picContainer.addEventListener("click", () => {
+        console.log("click");
+        currentPage = parseInt(pageSelect.value) ?? 1;
+        currentPage = currentPage + 1;
+        pageSelect.value = currentPage;
+        console.log(pageSelect.value)
+        imgContainer.src = `assets/images/mangas/hajime-no-ippo/el-regreso-del-aspirante/${currentPage}.jpg`;
+    });
+    
 
     nextButton.addEventListener("click", () => {
         currentPage = parseInt(pageSelect.value) ?? 1;

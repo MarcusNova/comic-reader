@@ -46,3 +46,12 @@ footer {
         }
     }
 }
+
+
+
+/* @media (max-width: 768px) {
+    main.main-content {
+        width: 400px;
+        background-color: rgb(255, 0, 0);
+    }
+} */
